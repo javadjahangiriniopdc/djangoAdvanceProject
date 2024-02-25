@@ -29,5 +29,13 @@ class UserRegisterView(View):
                 'password': form.cleaned_data['password']
             }
             messages.success(request, 'we send you a code', 'success')
-            return redirect('accounts:user_verify_code')
+            return redirect('accounts:verify_code')
         return redirect('home:home')
+
+
+class UserVerifyCodeView(View):
+    def get(self, request):
+        pass
+
+    def post(self, request):
+        pass
