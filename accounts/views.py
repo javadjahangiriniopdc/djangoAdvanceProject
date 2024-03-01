@@ -3,7 +3,7 @@ import random
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, VerifyCodeForm
 from .models import OtpCode
 from utils import send_otp_code
 
@@ -34,8 +34,13 @@ class UserRegisterView(View):
 
 
 class UserVerifyCodeView(View):
+    form_class = VerifyCodeForm
+
     def get(self, request):
-        pass
+        form = self.form_class
+        return render(request, 'accounts/verify.html', {'form': form})
 
     def post(self, request):
-        pass
+        user_session = request.session['user_registration_info']
+        print('=' * 90)
+        print(user_session)
